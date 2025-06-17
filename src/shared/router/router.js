@@ -55,7 +55,7 @@ export function Routes(props) {
         }),
       resolveKey: (route) => route.path,
     }),
-    h(Show, { when: () => matchedPath() == null, render: () => "404" }),
+    h(Show, { when: () => matchedPath() == null, render: props.notFound }),
   );
 }
 export function Link({ children, to, ...attr }) {
