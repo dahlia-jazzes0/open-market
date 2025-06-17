@@ -50,18 +50,38 @@ export function FooterView() {
               h(
                 "a",
                 { href: "#" },
-                h("img", { class: "w-8 h-8", src: "/images/icon-insta.svg", alt: "호두 인스타그램" }),
+                h("img", {
+                  class: "w-8 h-8",
+                  src: `${import.meta.env.BASE_URL}images/icon-insta.svg`,
+                  alt: "호두 인스타그램",
+                }),
               ),
             ),
             h(
               "li",
               null,
-              h("a", { href: "#" }, h("img", { class: "w-8 h-8", src: "/images/icon-fb.svg", alt: "호두 페이스북" })),
+              h(
+                "a",
+                { href: "#" },
+                h("img", {
+                  class: "w-8 h-8",
+                  src: `${import.meta.env.BASE_URL}images/icon-fb.svg`,
+                  alt: "호두 페이스북",
+                }),
+              ),
             ),
             h(
               "li",
               null,
-              h("a", { href: "#" }, h("img", { class: "w-8 h-8", src: "/images/icon-yt.svg", alt: "호두 유튜브" })),
+              h(
+                "a",
+                { href: "#" },
+                h("img", {
+                  class: "w-8 h-8",
+                  src: `${import.meta.env.BASE_URL}images/icon-yt.svg`,
+                  alt: "호두 유튜브",
+                }),
+              ),
             ),
           ]),
         ]),

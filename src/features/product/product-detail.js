@@ -72,7 +72,7 @@ function NumericInput({ value, min, max, onChange }) {
         onclick: () => set(count() - 1),
         disabled: () => count() <= min,
       },
-      h("img", { src: "/images/icon-minus.svg", alt: "-", draggable: false }),
+      h("img", { src: `${import.meta.env.BASE_URL}images/icon-minus.svg`, alt: "-", draggable: false }),
     ),
     h("input", {
       type: "number",
@@ -95,7 +95,7 @@ function NumericInput({ value, min, max, onChange }) {
         onclick: () => set(count() + 1),
         disabled: () => count() >= max,
       },
-      h("img", { src: "/images/icon-plus.svg", alt: "+", draggable: false }),
+      h("img", { src: `${import.meta.env.BASE_URL}images/icon-plus.svg`, alt: "+", draggable: false }),
     ),
   ]);
   function set(n) {
