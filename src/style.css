@@ -1,0 +1,29 @@
+@import "tailwindcss";
+@import "./font.css";
+
+@theme {
+  --color-*: initial;
+  --color-brand: #21bf48;
+
+  --color-black: #000;
+  --color-white: #fff;
+
+  --color-gray-3: #767676;
+  --color-gray-4: #c4c4c4;
+  --color-gray-5: #e0e0e0;
+  --color-gray-6: #f2f2f2;
+
+  --color-red: #eb5757;
+
+  --font-spoqa-han-sans-neo: "Spoqa Han Sans Neo", sans-serif;
+
+  --default-font-family: var(--font-spoqa-han-sans-neo);
+
+  --shadow-*: initial;
+  --shadow-header: 0px 4px 5px 0px #0000001a;
+
+  --rounded-*: initial;
+  --rounded-full: 99999rem;
+  --rounded-sm: 5px;
+  --rounded-md: 10px;
+}

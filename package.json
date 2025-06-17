@@ -1,0 +1,22 @@
+{
+  "name": "open-market",
+  "version": "0.0.0",
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.1.10",
+    "prettier": "^3.5.3",
+    "prettier-plugin-tailwindcss": "^0.6.12",
+    "tailwindcss": "^4.1.10",
+    "vite": "^6.3.5"
+  },
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "format": "prettier --write ."
+  },
+  "type": "module",
+  "dependencies": {
+    "tailwind-variants": "^1.0.0"
+  }
+}
