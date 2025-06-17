@@ -52,7 +52,7 @@ export function useProductSummaryList() {
   });
   return createMemo(() => {
     const p = data();
-    if (p == null) return null;
+    if (p == null) return [];
     return p.results.map((product) => ({
       id: product.id,
       title: product.name,
