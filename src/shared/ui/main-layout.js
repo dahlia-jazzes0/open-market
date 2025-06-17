@@ -5,7 +5,7 @@ import { HeaderView } from "@/shared/ui/header";
 export function MainLayout(props) {
   return fr(
     h(HeaderView), //
-    h("main", { class: "min-h-lvh xl:w-7xl mx-auto " }, ...props.children),
+    h("main", { class: "min-h-lvh xl:w-7xl mx-auto mt-22.5" }, ...props.children),
     h(FooterView),
   );
 }

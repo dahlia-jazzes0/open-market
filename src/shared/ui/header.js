@@ -6,7 +6,7 @@ export function HeaderView() {
   return h(
     "header",
     {
-      class: "bg-white shadow-header",
+      class: "bg-white shadow-header fixed top-0 left-0 right-0",
     },
     [
       h(
