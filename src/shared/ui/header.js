@@ -6,9 +6,10 @@ export function HeaderView() {
   return h(
     "header",
     {
-      class: "bg-white shadow-header fixed top-0 left-0 right-0",
+      class: "bg-white relative",
     },
     [
+      h("div", { class: "shadow-header absolute top-0 left-0 right-0 bottom-0 pointer-events-none" }),
       h(
         "div",
         {
