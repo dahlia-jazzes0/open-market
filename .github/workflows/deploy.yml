@@ -15,7 +15,7 @@ jobs:
       - run: bun install --frozen-lockfile
       - run: bun run build --base="/${{ github.event.repository.name }}/"
         env:
-          VITE_API_ENDPOINT: ${{ vars.VITE_API_ENDPOINT }}
+          VITE_API_ENDPOINT: ${{ secrets.VITE_API_ENDPOINT }}
       - uses: actions/upload-pages-artifact@v3
         with:
           path: ./dist
