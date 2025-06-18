@@ -62,7 +62,7 @@ function NumericInput({ value, min, max, onChange }) {
         onclick: () => set(count() - 1),
         disabled: () => count() <= min,
       },
-      h("img", { src: `${import.meta.env.BASE_URL}images/icon-minus.svg`, alt: "-", draggable: false }),
+      h("img", { src: `${import.meta.env.BASE_URL}images/icon-minus.svg`, alt: "감소", draggable: false }),
     ),
     h("input", {
       type: "number",
@@ -85,7 +85,7 @@ function NumericInput({ value, min, max, onChange }) {
         onclick: () => set(count() + 1),
         disabled: () => count() >= max,
       },
-      h("img", { src: `${import.meta.env.BASE_URL}images/icon-plus.svg`, alt: "+", draggable: false }),
+      h("img", { src: `${import.meta.env.BASE_URL}images/icon-plus.svg`, alt: "증가", draggable: false }),
     ),
   ]);
   function set(n) {
