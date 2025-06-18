@@ -3,8 +3,8 @@ import { useApi } from "@/shared/api/hook";
 import { createEffect, createMemo, createSignal, h } from "@/shared/element-helper/element-helper";
 import { navigateTo } from "@/shared/router/router";
 import { Button } from "@/shared/ui/button";
+import { Price } from "@/shared/ui/price";
 import { ProductImage } from "@/shared/ui/product-image";
-import { formatNumber } from "@/shared/utils/format-number";
 
 export function ProductDetailOverview({ title, seller, thumbnailUrl, price, stock }) {
   const [count, setCount] = createSignal(1);
@@ -17,12 +17,7 @@ export function ProductDetailOverview({ title, seller, thumbnailUrl, price, stoc
       h("div", null, [
         h("p", { class: "text-gray-3 mb-4" }, seller), //
         h("p", { class: "text-4xl mb-5" }, title),
-        h(
-          "p",
-          { class: "flex items-baseline gap-x-0.5" },
-          h("span", { class: "text-4xl font-bold" }, formatNumber(price)),
-          "원",
-        ),
+        h(Price, { size: "lg", price: () => price }),
       ]),
       h("div", { class: "flex flex-col max-w-150" }, [
         h("p", { class: "text-gray-3 pb-5 mb-7.5 border-b-2 border-gray-4 text-base" }, "택배배송 / 무료배송"), //
@@ -43,12 +38,7 @@ export function ProductDetailOverview({ title, seller, thumbnailUrl, price, stoc
           h("span", { class: "flex items-baseline gap-x-3" }, [
             h("span", { class: "text-gray-3" }, "총 수량 ", h("span", { class: "text-brand" }, count), "개"),
             h("span", { class: "text-gray-4" }, "|"),
-            h(
-              "span",
-              { class: "text-brand flex items-baseline gap-x-0.5" },
-              h("span", { class: "text-4xl font-bold" }, () => formatNumber(price * count())),
-              "원",
-            ),
+            h(Price, { class: "text-brand", size: "lg", price: () => price * count() }),
           ]),
         ),
         h("div", { class: "flex items-center gap-x-3.5 mt-5.5" }, [

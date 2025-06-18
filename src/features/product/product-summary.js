@@ -2,8 +2,8 @@ import { apiClient } from "@/shared/api/client";
 import { useApi } from "@/shared/api/hook";
 import { createEffect, createMemo, For, h, Show } from "@/shared/element-helper/element-helper";
 import { Link } from "@/shared/router/router";
+import { Price } from "@/shared/ui/price";
 import { ProductImage } from "@/shared/ui/product-image";
-import { formatNumber } from "@/shared/utils/format-number";
 import { tv } from "tailwind-variants";
 
 const productSummaryListStyle = tv({
@@ -36,7 +36,7 @@ export function ProductSummaryView({ title, seller, thumbnailUrl, price, isSoldO
         title,
         Show({ when: () => isSoldOut, render: () => h("span", { class: "text-red" }, "[품절]") }),
       ),
-      h("p", { class: "flex items-baseline gap-x-0.5" }, h("span", { class: "text-2xl" }, formatNumber(price)), "원"),
+      h(Price, { price: () => price }),
     ),
   ]);
 }
