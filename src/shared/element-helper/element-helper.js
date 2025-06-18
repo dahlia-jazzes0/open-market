@@ -178,7 +178,7 @@ export function fr(...children) {
   fragmentMarkerMap.set(fragment, { begin: beginMarker, end: endMarker });
   fragment.append(beginMarker);
   for (const child of children) {
-    fragment.append(child);
+    _insert(fragment, child);
   }
   fragment.append(endMarker);
   return fragment;
@@ -246,12 +246,12 @@ export function For({ each, render, resolveKey }) {
         buffer.append(oldItem.node);
       } else {
         createScope((dispose) => {
-          const node = render(item);
+          const value = render(item, i, list);
+          const node = _insert(buffer, value);
           map.set(key, {
             node,
             dispose,
           });
-          buffer.append(node);
         });
       }
     }
