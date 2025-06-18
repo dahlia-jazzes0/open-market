@@ -230,7 +230,7 @@ export function For({ each, render, resolveKey }) {
     for (const [key, old] of map) {
       if (!newKeySet.has(key)) {
         old.dispose();
-        old.node.remove();
+        removeNodes(old.node);
         map.delete(key);
       }
     }
@@ -261,7 +261,7 @@ export function For({ each, render, resolveKey }) {
   onCleanup(() => {
     for (const item of map.values()) {
       item.dispose();
-      item.node.remove();
+      removeNodes(item.node);
     }
     map.clear();
   });
@@ -289,7 +289,7 @@ function insert(parent, value, marker) {
 
 function _insert(parent, value, marker, current) {
   if (value == null || typeof value === "boolean") {
-    cleanupNodes(current);
+    removeNodes(current);
     return null;
   } else if (typeof value === "string" || typeof value === "number") {
     const stringValue = String(value);
@@ -297,34 +297,36 @@ function _insert(parent, value, marker, current) {
       if (current.data !== stringValue) current.data = stringValue;
       return current;
     }
-    cleanupNodes(current);
+    removeNodes(current);
     const textNode = document.createTextNode(stringValue);
     parent.insertBefore(textNode, marker ?? null);
     return textNode;
   } else if (value instanceof DocumentFragment) {
-    cleanupNodes(current);
+    removeNodes(current);
     const nodes = [...value.childNodes];
     parent.insertBefore(value, marker ?? null);
     return nodes;
   } else if (value instanceof Node) {
     if (current === value) return current;
-    cleanupNodes(current);
+    removeNodes(current);
     parent.insertBefore(value, marker ?? null);
     return value;
   } else if (Array.isArray(value)) {
     return value.map((item) => _insert(parent, item, marker)).flat();
   }
-  cleanupNodes(current);
+  removeNodes(current);
   return null;
-
-  function cleanupNodes(node) {
-    if (node == null) return;
-    if (Array.isArray(node)) node.forEach(cleanupNodes);
-    else if (node instanceof DocumentFragment) {
-      throw 53;
-    } else if (node instanceof Node) {
-      node.remove();
+}
+function removeNodes(node) {
+  if (node == null) return;
+  if (Array.isArray(node)) node.forEach(removeNodes);
+  else if (node instanceof Node) {
+    if (node instanceof DocumentFragment) {
+      throw new Error("should not reach here");
     }
+    node.remove();
+  } else {
+    throw new Error("Unknown node type");
   }
 }
 
