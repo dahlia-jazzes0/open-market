@@ -1,4 +1,4 @@
-import { apiClient } from "@/shared/api/client";
+import { api } from "@/shared/api";
 import { useApi } from "@/shared/api/hook";
 import { createEffect, createMemo, createSignal, h } from "@/shared/element-helper/element-helper";
 import { navigateTo } from "@/shared/router/router";
@@ -99,7 +99,7 @@ function NumericInput({ value, min, max, onChange }) {
 }
 
 export function useProductDetail(productId) {
-  const { data, error } = useApi(async () => apiClient.get(`/products/${productId}`));
+  const { data, error } = useApi(async () => api.get(`/products/${productId}`).send());
   createEffect(() => {
     const err = error();
     if (err != null) {

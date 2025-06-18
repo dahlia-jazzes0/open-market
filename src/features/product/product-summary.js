@@ -1,4 +1,4 @@
-import { apiClient } from "@/shared/api/client";
+import { api } from "@/shared/api";
 import { useApi } from "@/shared/api/hook";
 import { createEffect, createMemo, For, h, Show } from "@/shared/element-helper/element-helper";
 import { Link } from "@/shared/router/router";
@@ -42,7 +42,7 @@ export function ProductSummaryView({ title, seller, thumbnailUrl, price, isSoldO
 }
 
 export function useProductSummaryList() {
-  const { data, error } = useApi(async () => apiClient.get("/products"));
+  const { data, error } = useApi(async () => api.get("/products").send());
   createEffect(() => {
     const err = error();
     if (err != null) {
