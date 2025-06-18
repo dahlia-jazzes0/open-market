@@ -22,8 +22,8 @@
   --shadow-*: initial;
   --shadow-header: 0px 4px 5px 0px #0000001a;
 
-  --rounded-*: initial;
-  --rounded-full: 99999rem;
-  --rounded-sm: 5px;
-  --rounded-md: 10px;
+  --radius-*: initial;
+  --radius-full: 99999rem;
+  --radius-sm: 5px;
+  --radius-md: 10px;
 }
