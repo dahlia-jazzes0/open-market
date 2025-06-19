@@ -1,6 +1,10 @@
 import { api } from "../api";
 import { createSignal } from "../element-helper/element-helper";
+import { loginPasswordSchema, loginUsernameSchema } from "./schema";
 
+/**
+ * @deprecated Use schema instead
+ */
 export class AuthValidationError extends Error {
   #errors;
   constructor(message, errors) {
@@ -30,18 +34,8 @@ class Auth {
     return this.#user();
   }
   async login(username, password) {
-    username = username.trim();
-    password = password.trim();
-    if (!username) {
-      throw new AuthValidationError("아이디를 입력해 주세요.", [
-        { name: "username", error: "아이디를 입력해 주세요." },
-      ]);
-    }
-    if (!password) {
-      throw new AuthValidationError("비밀번호를 입력해 주세요.", [
-        { name: "password", error: "비밀번호를 입력해 주세요." },
-      ]);
-    }
+    username = loginUsernameSchema.parse(username);
+    password = loginPasswordSchema.parse(password);
 
     const body = await api
       .post("/accounts/login/")
