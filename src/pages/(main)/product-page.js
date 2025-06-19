@@ -1,7 +1,7 @@
 import { ProductDetailOverview, useProductDetail } from "@/features/product/product-detail";
 import { h, Show } from "@/shared/element-helper/element-helper";
-import { MainLayout } from "@/shared/ui/main-layout";
 import { TabMockup } from "@/shared/ui/tab";
+import { MainLayout } from "./main-layout";
 
 export function ProductDetailPage({ params: { productId } }) {
   const data = useProductDetail(productId);
