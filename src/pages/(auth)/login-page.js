@@ -1,4 +1,7 @@
-import { auth, AuthValidationError } from "@/shared/auth/auth";
+import { createForm } from "@/features/form/create-form";
+import { FormField } from "@/features/form/ui";
+import { auth } from "@/shared/auth/auth";
+import { loginPasswordSchema, loginUsernameSchema } from "@/shared/auth/schema";
 import { createSignal, For, fr, h, Show } from "@/shared/element-helper/element-helper";
 import { Link } from "@/shared/router/router";
 import { Button } from "@/shared/ui/button";
@@ -7,6 +10,31 @@ import { tv } from "tailwind-variants";
 import { AuthLayout } from "./auth-layout";
 
 export function LoginPage() {
+  const form = createForm({
+    fields: {
+      username: {
+        parse: loginUsernameSchema.parse,
+      },
+      password: {
+        parse: loginPasswordSchema.parse,
+      },
+    },
+    onsubmit: async ({ username, password }) => {
+      await auth.login(username, password);
+      setError(null);
+      history.back();
+    },
+    onerror: async (error, { formElement }) => {
+      if (error instanceof Response) {
+        const body = await error.json();
+        setError(body.error);
+        formElement.elements.password.value = "";
+        formElement.elements.password.focus();
+        return;
+      }
+      throw error;
+    },
+  });
   const [error, setError] = createSignal(null);
   return h(
     AuthLayout,
@@ -14,41 +42,35 @@ export function LoginPage() {
     h(
       "form",
       {
-        onsubmit: async (e) => {
-          e.preventDefault();
-          const elements = e.currentTarget.elements;
-          const username = elements.username.value;
-          const password = elements.password.value;
-
-          try {
-            await auth.login(username, password);
-            history.back();
-          } catch (error) {
-            if (error instanceof AuthValidationError) {
-              setError(error.message);
-              for (const e of error.errors) {
-                resetAndFocusInput(elements[e.name]);
-              }
-              return;
-            } else if (error instanceof Response) {
-              const body = await error.json();
-              setError(body.error);
-              resetAndFocusInput(elements.password);
-              return;
-            }
-            throw error;
-          }
-
-          function resetAndFocusInput(target) {
-            target.value = "";
-            target.focus();
-          }
-        },
+        onsubmit: form.onsubmit,
       },
       [
         h(LoginTabView, null, [
-          h(Input, { name: "username", placeholder: "아이디" }), //
-          h(Input, { type: "password", name: "password", placeholder: "비밀번호" }), //
+          h(FormField, {
+            form,
+            name: "username",
+            render: (field) =>
+              h(Input, {
+                id: field.id,
+                name: field.name,
+                value: field.value,
+                onblur: field.onblur,
+                placeholder: "아이디",
+              }),
+          }),
+          h(FormField, {
+            form,
+            name: "password",
+            render: (field) =>
+              h(Input, {
+                type: "password",
+                id: field.id,
+                name: field.name,
+                value: field.value,
+                onblur: field.onblur,
+                placeholder: "비밀번호",
+              }),
+          }),
           h(
             "ul",
             { class: "py-4.5 text-red font-medium" },
