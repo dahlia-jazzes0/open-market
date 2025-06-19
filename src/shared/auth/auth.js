@@ -2,20 +2,6 @@ import { api } from "../api";
 import { createSignal } from "../element-helper/element-helper";
 import { loginPasswordSchema, loginUsernameSchema } from "./schema";
 
-/**
- * @deprecated Use schema instead
- */
-export class AuthValidationError extends Error {
-  #errors;
-  constructor(message, errors) {
-    super(message);
-    this.#errors = errors;
-  }
-  get errors() {
-    return this.#errors;
-  }
-}
-
 class Auth {
   #accessToken;
   #refreshToken;
