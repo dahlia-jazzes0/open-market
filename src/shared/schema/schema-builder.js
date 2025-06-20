@@ -208,15 +208,32 @@ class BooleanSchemaBuilder extends BaseSchemaBuilder {
 }
 
 export default {
+  /**
+   *
+   * @param {{ message?: string }} [options]
+   */
   string(options) {
     return new StringSchemaBuilder(options);
   },
+  /**
+   *
+   * @param {object} schema
+   * @param {{ message?: string }} [options]
+   */
   object(schema, options) {
     return new ObjectSchemaBuilder(schema, options);
   },
+  /**
+   *
+   * @param {{ cast?: true, message?: string }} [options]
+   */
   number(options) {
     return new NumberSchemaBuilder(options);
   },
+  /**
+   *
+   * @param {{ cast?: true | (v: unknown) => boolean, message?: string }} [options]
+   */
   boolean(options) {
     return new BooleanSchemaBuilder(options);
   },
