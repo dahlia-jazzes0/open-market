@@ -1,6 +1,6 @@
 import { api } from "@/shared/api";
 import { useApi } from "@/shared/api/hook";
-import { createEffect, createMemo, createSignal, h } from "@/shared/element-helper/element-helper";
+import { createEffect, createSignal, h } from "@/shared/element-helper/element-helper";
 import { router } from "@/shared/router/router";
 import { Button } from "@/shared/ui/button";
 import { Price } from "@/shared/ui/price";
@@ -107,7 +107,7 @@ export function useProductDetail(productId) {
       router.navigateTo("/error", { replace: true });
     }
   });
-  return createMemo(() => {
+  return () => {
     const p = data();
     if (p == null) return null;
     return {
@@ -119,5 +119,5 @@ export function useProductDetail(productId) {
       stock: p.stock,
       seller: p.seller.name,
     };
-  });
+  };
 }

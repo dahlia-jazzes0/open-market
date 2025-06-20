@@ -1,13 +1,4 @@
-import {
-  createEffect,
-  createMemo,
-  createSignal,
-  For,
-  fr,
-  h,
-  onCleanup,
-  Show,
-} from "@/shared/element-helper/element-helper.js";
+import { createEffect, createSignal, For, fr, h, onCleanup, Show } from "@/shared/element-helper/element-helper.js";
 import { pathToRegExp } from "./path-to-regexp";
 
 let prevPath = null;
@@ -28,21 +19,20 @@ export function Routes(props) {
       prevPath = e.state?.prevPath;
     }
   });
-  const routes = createMemo(() =>
+  const routes = () =>
     Object.entries(props.routes).map(([path, render]) => ({
       path,
       pattern: pathToRegExp(path),
       render,
-    })),
-  );
-  const matchedPath = createMemo(() => {
+    }));
+  const matchedPath = () => {
     const currentPath = path();
     for (const route of routes()) {
       if (route.pattern.test(currentPath)) {
         return route.path;
       }
     }
-  });
+  };
   return fr(
     h(For, {
       each: routes,

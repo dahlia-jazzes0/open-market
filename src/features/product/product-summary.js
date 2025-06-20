@@ -1,6 +1,6 @@
 import { api } from "@/shared/api";
 import { useApi } from "@/shared/api/hook";
-import { createEffect, createMemo, For, h, Show } from "@/shared/element-helper/element-helper";
+import { createEffect, For, h, Show } from "@/shared/element-helper/element-helper";
 import { Link, router } from "@/shared/router/router";
 import { Price } from "@/shared/ui/price";
 import { ProductImage } from "@/shared/ui/product-image";
@@ -50,7 +50,7 @@ export function useProductSummaryList() {
       router.navigateTo("/error", { replace: true });
     }
   });
-  return createMemo(() => {
+  return () => {
     const p = data();
     if (p == null) return [];
     return p.results.map((product) => ({
@@ -61,5 +61,5 @@ export function useProductSummaryList() {
       price: product.price,
       isSoldOut: product.stock <= 0,
     }));
-  });
+  };
 }

@@ -122,17 +122,6 @@ function cleanup(computation, options) {
   computation.cleanupFns = [];
 }
 
-export function createMemo(fn) {
-  const [value, setValue] = createSignal();
-  createEffect(
-    () => {
-      setValue(fn());
-    },
-    { sync: true },
-  );
-  return value;
-}
-
 export function onCleanup(fn) {
   if (owner != null) {
     owner.cleanupFns.push(fn);
