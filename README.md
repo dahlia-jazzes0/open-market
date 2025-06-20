@@ -164,7 +164,7 @@
 
 ### 폼 검증 및 UI
 
-- [src/features/form/create-form.js]
+- [src/features/form/create-form.js](src/features/form/create-form.js)
 - 필드를 기준으로 값을 자동으로 가져오고 유지하는 Signal, 일반화된 검증, id 자동 생성 등 다양한 기능을 제공합니다.
 - ```js
   function LoginForm() {
