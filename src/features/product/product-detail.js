@@ -1,7 +1,7 @@
 import { api } from "@/shared/api";
 import { useApi } from "@/shared/api/hook";
 import { createEffect, createMemo, createSignal, h } from "@/shared/element-helper/element-helper";
-import { navigateTo } from "@/shared/router/router";
+import { router } from "@/shared/router/router";
 import { Button } from "@/shared/ui/button";
 import { Price } from "@/shared/ui/price";
 import { ProductImage } from "@/shared/ui/product-image";
@@ -104,7 +104,7 @@ export function useProductDetail(productId) {
     const err = error();
     if (err != null) {
       console.error(err);
-      navigateTo("/error", err);
+      router.navigateTo("/error", { replace: true });
     }
   });
   return createMemo(() => {

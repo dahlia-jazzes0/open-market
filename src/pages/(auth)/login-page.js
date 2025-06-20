@@ -3,7 +3,7 @@ import { FormField } from "@/features/form/ui";
 import { auth } from "@/shared/auth/auth";
 import { loginPasswordSchema, loginUsernameSchema } from "@/shared/auth/schema";
 import { createSignal, For, fr, h, Show } from "@/shared/element-helper/element-helper";
-import { Link } from "@/shared/router/router";
+import { Link, router } from "@/shared/router/router";
 import { Button } from "@/shared/ui/button";
 import { Input } from "@/shared/ui/input";
 import { tv } from "tailwind-variants";
@@ -22,7 +22,7 @@ export function LoginPage() {
     onsubmit: async ({ username, password }) => {
       await auth.login(username, password);
       setError(null);
-      history.back();
+      router.back();
     },
     onerror: async (error, { formElement }) => {
       if (error instanceof Response) {

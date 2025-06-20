@@ -1,5 +1,5 @@
 import { h } from "@/shared/element-helper/element-helper";
-import { Link } from "@/shared/router/router";
+import { Link, router } from "@/shared/router/router";
 import { Button, buttonStyle } from "@/shared/ui/button";
 
 export function NotFoundErrorPage() {
@@ -21,7 +21,7 @@ export function NotFoundErrorPage() {
           "div",
           { class: "flex gap-3.5" },
           h(Link, { to: "/", class: buttonStyle() }, "메인으로"),
-          h(Button, { variant: "outline", onclick: () => history.back() }, "이전 페이지"),
+          h(Button, { variant: "outline", onclick: () => router.back() }, "이전 페이지"),
         ),
       ]),
     ),

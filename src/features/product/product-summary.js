@@ -1,7 +1,7 @@
 import { api } from "@/shared/api";
 import { useApi } from "@/shared/api/hook";
 import { createEffect, createMemo, For, h, Show } from "@/shared/element-helper/element-helper";
-import { Link } from "@/shared/router/router";
+import { Link, router } from "@/shared/router/router";
 import { Price } from "@/shared/ui/price";
 import { ProductImage } from "@/shared/ui/product-image";
 import { tv } from "tailwind-variants";
@@ -47,7 +47,7 @@ export function useProductSummaryList() {
     const err = error();
     if (err != null) {
       console.error(err);
-      navigateTo("/error", err);
+      router.navigateTo("/error", { replace: true });
     }
   });
   return createMemo(() => {
