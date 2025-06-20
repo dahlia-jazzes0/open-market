@@ -23,6 +23,9 @@ function AuthGuardModal() {
     {
       ref: (element) => (dialogElement = element),
       class: "m-auto",
+      onclick: (e) => {
+        if (e.target === e.currentTarget) close();
+      },
     },
     h(
       "form",
