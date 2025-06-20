@@ -33,6 +33,24 @@ export function FormInput({ field, class: className, children, ...rest }) {
   });
 }
 
+const formCheckboxStyle = tv({
+  base: "border-gray-4 has-checked:border-brand inline-flex h-4 w-4 shrink-0 grow-0 basis-4 items-center justify-center border select-none",
+});
+export function FormCheckbox({ field, class: className, children, ...rest }) {
+  return h("label", { class: formCheckboxStyle({ className }) }, [
+    h("input", {
+      type: "checkbox",
+      class: "hidden peer",
+      id: field.id,
+      name: field.name,
+      checked: field.value,
+      onchange: field.onblur,
+      ...rest,
+    }),
+    h("img", { class: "hidden peer-checked:block", src: `${import.meta.env.BASE_URL}images/icon-check.svg`, alt: "" }),
+  ]);
+}
+
 const formLabelStyle = tv({
   base: "text-gray-3",
 });
