@@ -6,9 +6,9 @@ export const buttonStyle = tv({
   variants: {
     size: {
       sm: "h-10 font-medium",
-      input: "h-13.5 font-medium",
-      md: "h-15 font-bold",
-      lg: "h-17 font-bold",
+      input: "h-13.5 px-2.5 font-medium",
+      md: "h-15 px-2.5 font-bold",
+      lg: "h-17 px-2.5 font-bold",
     },
     variant: {
       primary: "bg-brand disabled:bg-gray-4 text-white hover:opacity-95 active:opacity-90 disabled:text-white",
