@@ -1,4 +1,5 @@
 import { LoginPage } from "@/pages/(auth)/login-page";
+import { SignupPage } from "@/pages/(auth)/signup-page";
 import { NotFoundErrorPage } from "@/pages/error-page";
 import { MainPage } from "@/pages/(main)/main-page";
 import { ProductDetailPage } from "@/pages/(main)/product-page";
@@ -12,6 +13,7 @@ export function AppRoutes() {
       "/": MainPage,
       "/products/:productId": ProductDetailPage,
       "/login": LoginPage,
+      "/signup": SignupPage,
     },
   });
 }
