@@ -1,6 +1,7 @@
 import { authGuard } from "@/pages/(auth)/auth-guard";
 import { auth } from "@/shared/auth/auth";
 import { createEffect, createSignal, h, onCleanup, Show } from "@/shared/element-helper/element-helper";
+import { ShoppingBagIcon, ShoppingCartIcon, UserIcon } from "../icon/icon";
 import { Link } from "../router/router";
 import { buttonStyle } from "./button";
 import { SearchInput } from "./search-input";
@@ -54,11 +55,7 @@ export function HeaderView() {
                       authGuard.showModal();
                     },
                   },
-                  h("img", {
-                    class: "w-8 h-8 pr-1",
-                    src: `${import.meta.env.BASE_URL}images/icon-shopping-cart.svg`,
-                    alt: "",
-                  }),
+                  h(ShoppingCartIcon, { class: "mr-1" }),
                   h("p", { class: "text-xs text-gray-3 break-keep" }, ["장바구니"]),
                 ),
               ),
@@ -71,7 +68,7 @@ export function HeaderView() {
                     h(
                       Link,
                       { to: "/login", class: "flex flex-col gap-y-1 items-center" },
-                      h("img", { class: "w-8 h-8", src: `${import.meta.env.BASE_URL}images/icon-user.svg`, alt: "" }),
+                      h(UserIcon),
                       h("p", { class: "text-xs text-gray-3 break-keep" }, ["로그인"]),
                     ),
                 }),
@@ -89,7 +86,7 @@ export function HeaderView() {
                         when: () => auth.user?.user_type === "SELLER",
                         render: () =>
                           h(Link, { to: "/business", class: buttonStyle({ size: "input" }) }, [
-                            h("img", { src: `${import.meta.env.BASE_URL}images/icon-shopping-bag.svg` }),
+                            h(ShoppingBagIcon),
                             h("span", { class: "ml-2" }, "판매자 센터"),
                           ]),
                       }),
@@ -134,7 +131,7 @@ function MyPageDropdown() {
           setOpen(true);
         },
       },
-      h("img", { class: "w-8 h-8", src: `${import.meta.env.BASE_URL}images/icon-user.svg`, alt: "" }),
+      h(UserIcon),
       h("p", { class: "text-xs text-gray-3 break-keep" }, ["마이페이지"]),
     ),
     h(Show, { when: () => open() === true, render: () => h(MyPageDropdownContent) }),

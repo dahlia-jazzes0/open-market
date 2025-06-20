@@ -3,6 +3,7 @@ import { api } from "@/shared/api";
 import { useApi } from "@/shared/api/hook";
 import { auth } from "@/shared/auth/auth";
 import { createEffect, createSignal, h } from "@/shared/element-helper/element-helper";
+import { MinusIcon, PlusIcon } from "@/shared/icon/icon";
 import { router } from "@/shared/router/router";
 import { Button } from "@/shared/ui/button";
 import { Price } from "@/shared/ui/price";
@@ -83,11 +84,12 @@ function NumericInput({ value, min, max, onChange }) {
       "button",
       {
         class:
-          "grow-0 shrink-0 basis-12.5 h-full flex justify-center items-center border-r border-gray-4 not-disabled:hover:bg-gray-6/25 not-disabled:active:bg-gray-6/50 disabled:opacity-50 disabled:cursor-not-allowed",
+          "grow-0 shrink-0 basis-12.5 h-full flex justify-center items-center border-r border-gray-4 not-disabled:hover:bg-gray-6/25 not-disabled:active:bg-gray-6/50 disabled:bg-gray-5 disabled:cursor-not-allowed text-gray-4 disabled:text-gray-6",
         onclick: () => set(count() - 1),
         disabled: () => count() <= min,
       },
-      h("img", { src: `${import.meta.env.BASE_URL}images/icon-minus.svg`, alt: "감소", draggable: false }),
+      h(MinusIcon),
+      h("span", { class: "sr-only" }, "감소"),
     ),
     h("input", {
       type: "number",
@@ -106,11 +108,12 @@ function NumericInput({ value, min, max, onChange }) {
       "button",
       {
         class:
-          "grow-0 shrink-0 basis-12.5 h-full flex justify-center items-center border-l border-gray-4 not-disabled:hover:bg-gray-6/25 not-disabled:active:bg-gray-6/50 disabled:opacity-50 disabled:cursor-not-allowed",
+          "grow-0 shrink-0 basis-12.5 h-full flex justify-center items-center border-l border-gray-4 not-disabled:hover:bg-gray-6/25 not-disabled:active:bg-gray-6/50 disabled:bg-gray-5 disabled:cursor-not-allowed text-gray-4 disabled:text-gray-6",
         onclick: () => set(count() + 1),
         disabled: () => count() >= max,
       },
-      h("img", { src: `${import.meta.env.BASE_URL}images/icon-plus.svg`, alt: "증가", draggable: false }),
+      h(PlusIcon),
+      h("span", { class: "sr-only" }, "증가"),
     ),
   ]);
   function set(n) {

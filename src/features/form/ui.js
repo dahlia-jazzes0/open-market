@@ -1,4 +1,5 @@
 import { For, h } from "@/shared/element-helper/element-helper";
+import { CheckIcon } from "@/shared/icon/icon";
 import { tv } from "tailwind-variants";
 
 export function FormField({ form, name, render }) {
@@ -47,7 +48,7 @@ export function FormCheckbox({ field, class: className, children, ...rest }) {
       onchange: field.onblur,
       ...rest,
     }),
-    h("img", { class: "hidden peer-checked:block", src: `${import.meta.env.BASE_URL}images/icon-check.svg`, alt: "" }),
+    h(CheckIcon, { class: "hidden peer-checked:block text-brand" }),
   ]);
 }
 

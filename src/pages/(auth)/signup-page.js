@@ -2,6 +2,7 @@ import { createForm } from "@/features/form/create-form";
 import { FormCheckbox, FormErrors, FormField, FormInput, FormLabel } from "@/features/form/ui";
 import { api } from "@/shared/api";
 import { createSignal, For, fr, h, Show } from "@/shared/element-helper/element-helper";
+import { CircleCheckIcon } from "@/shared/icon/icon";
 import { router } from "@/shared/router/router";
 import sb from "@/shared/schema/schema-builder";
 import { SchemaError } from "@/shared/schema/schema-error";
@@ -386,11 +387,7 @@ function PasswordInput({ valid, ...rest }) {
       type: "password",
       ...rest,
     }),
-    h("img", {
-      class: "absolute top-3.25 right-4",
-      src: () => `${import.meta.env.BASE_URL}images/icon-check-${valid() ? "on" : "off"}.svg`,
-      alt: "",
-    }),
+    h(CircleCheckIcon, { class: () => `absolute top-3.25 right-4 ${valid() ? "text-brand" : "text-gray-6"}` }),
   );
 }
 
