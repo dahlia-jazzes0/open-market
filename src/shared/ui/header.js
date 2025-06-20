@@ -1,6 +1,7 @@
 import { authGuard } from "@/pages/(auth)/auth-guard";
 import { auth } from "@/shared/auth/auth";
 import { createEffect, createSignal, h, onCleanup, Show } from "@/shared/element-helper/element-helper";
+import { tv } from "tailwind-variants";
 import { ShoppingBagIcon, ShoppingCartIcon, UserIcon } from "../icon/icon";
 import { Link } from "../router/router";
 import { buttonStyle } from "./button";
@@ -99,9 +100,24 @@ function SellerUserButton() {
   });
 }
 
+const myPageDropdownStyle = tv({
+  slots: {
+    button: "flex flex-col items-center gap-y-1",
+    description: "text-gray-3 text-xs break-keep",
+  },
+  variants: {
+    active: {
+      true: {
+        button: "text-brand",
+        description: "text-brand",
+      },
+    },
+  },
+});
 function MyPageDropdown() {
   let containerElement;
   const [open, setOpen] = createSignal(false);
+  const { button, description } = myPageDropdownStyle();
   createEffect(() => {
     const opened = open();
     if (opened) {
@@ -124,13 +140,13 @@ function MyPageDropdown() {
     h(
       "button",
       {
-        class: "flex flex-col gap-y-1 items-center",
+        class: () => button({ active: open() === true }),
         onclick: () => {
           setOpen(true);
         },
       },
       h(UserIcon),
-      h("p", { class: "text-xs text-gray-3 break-keep" }, "마이페이지"),
+      h("p", { class: () => description({ active: open() === true }) }, "마이페이지"),
     ),
     h(Show, { when: () => open() === true, render: () => h(MyPageDropdownContent) }),
   );
