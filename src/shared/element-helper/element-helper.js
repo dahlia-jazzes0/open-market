@@ -131,7 +131,17 @@ export function onCleanup(fn) {
 export function h(tag, props, ...children) {
   if (typeof tag === "function") return tag({ ...props, children: children.flat() });
 
-  const element = document.createElement(tag);
+  const element = createElement(tag);
+  function createElement(tag) {
+    switch (tag) {
+      case "svg":
+      case "path":
+      case "use":
+        return document.createElementNS("http://www.w3.org/2000/svg", tag);
+      default:
+        return document.createElement(tag);
+    }
+  }
   if (props) {
     for (const [key, value] of Object.entries(props)) {
       if (typeof value === "function") {
