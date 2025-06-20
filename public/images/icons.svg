@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <symbol id="plus" width="20" height="20" viewBox="0 0 20 20" fill="none">
+      <path d="M0 9.5H20" stroke="currentcolor" stroke-width="2"/>
+      <path d="M10 20L10 0" stroke="currentcolor" stroke-width="2"/>
+    </symbol>
+    <symbol id="minus" width="20" height="20" viewBox="0 0 20 20" fill="none">
+      <path d="M0 10H20" stroke="currentcolor" stroke-width="2"/>
+    </symbol>
+    <symbol id="circle-check" width="28" height="28" viewBox="0 0 28 28" fill="none">
+      <circle cx="14" cy="14" r="14" fill="currentcolor"/>
+      <path d="M7 13.8571L12.6 19L21 10" stroke="white" stroke-width="2"/>
+    </symbol>
+    <symbol id="check" width="12" height="10" viewBox="0 0 12 10" fill="none">
+      <path d="M1 4L5 8L11 1" stroke="currentcolor" stroke-width="2"/>
+    </symbol>
+    <symbol id="user" width="32" height="32" viewBox="0 0 32 32" fill="none">
+      <path d="M26.6667 28V25.3333C26.6667 23.9188 26.1048 22.5623 25.1046 21.5621C24.1044 20.5619 22.7479 20 21.3334 20H10.6667C9.25222 20 7.89566 20.5619 6.89547 21.5621C5.89528 22.5623 5.33337 23.9188 5.33337 25.3333V28" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M16 14.6667C18.9455 14.6667 21.3333 12.2789 21.3333 9.33333C21.3333 6.38781 18.9455 4 16 4C13.0544 4 10.6666 6.38781 10.6666 9.33333C10.6666 12.2789 13.0544 14.6667 16 14.6667Z" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="shopping-cart" width="32" height="32" viewBox="0 0 32 32" fill="none">
+      <path d="M12.8889 28.4444C13.6253 28.4444 14.2222 27.8475 14.2222 27.1111C14.2222 26.3747 13.6253 25.7778 12.8889 25.7778C12.1525 25.7778 11.5555 26.3747 11.5555 27.1111C11.5555 27.8475 12.1525 28.4444 12.8889 28.4444Z" fill="currentcolor" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M25.3333 28.4444C26.0697 28.4444 26.6667 27.8475 26.6667 27.1111C26.6667 26.3747 26.0697 25.7778 25.3333 25.7778C24.597 25.7778 24 26.3747 24 27.1111C24 27.8475 24.597 28.4444 25.3333 28.4444Z" fill="currentcolor" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M2.66663 2.66666H7.51511L10.7636 18.5359C10.8744 19.0815 11.178 19.5717 11.6212 19.9205C12.0644 20.2694 12.619 20.4547 13.1878 20.444H24.9697C25.5385 20.4547 26.0931 20.2694 26.5363 19.9205C26.9795 19.5717 27.2831 19.0815 27.3939 18.5359L29.3333 8.59245H8.72723" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="shopping-bag" width="32" height="32" viewBox="0 0 32 32" fill="none">
+      <path d="M8 2.66669L4 8.00002V26.6667C4 27.3739 4.28095 28.0522 4.78105 28.5523C5.28115 29.0524 5.95942 29.3334 6.66667 29.3334H25.3333C26.0406 29.3334 26.7189 29.0524 27.219 28.5523C27.719 28.0522 28 27.3739 28 26.6667V8.00002L24 2.66669H8Z" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M4 8H28" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M21.3337 13.3333C21.3337 14.7478 20.7718 16.1044 19.7716 17.1045C18.7714 18.1047 17.4148 18.6666 16.0003 18.6666C14.5858 18.6666 13.2293 18.1047 12.2291 17.1045C11.2289 16.1044 10.667 14.7478 10.667 13.3333" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="swiper-left" width="60" height="124" viewBox="0 0 60 124" fill="none">
+      <path d="M34 70L26 62L34 54" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="swiper-right" width="60" height="124" viewBox="0 0 60 124" fill="none">
+      <path d="M26 54L34 62L26 70" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="delete" width="22" height="22" viewBox="0 0 22 22" fill="none">
+      <path d="M4.14258 18.2842L18.2847 4.14204" stroke="currentcolor" stroke-width="2"/>
+      <path d="M18.1426 18.1421L4.00044 3.99996" stroke="currentcolor" stroke-width="2"/>
+    </symbol>
+  </defs>
+</svg>
