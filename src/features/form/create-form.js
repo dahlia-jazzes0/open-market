@@ -64,7 +64,7 @@ export function createForm({ fields, onsubmit, onerror }) {
       let hasFocused = false;
       for (const [name, field] of Object.entries(form.fields)) {
         const element = formElement.elements[name];
-        if (element == null) throw new Error("Element not found");
+        if (element == null) continue;
         field.invalidate(getValue(element, field.type), {
           resolve: (value) => {
             data[name] = value;
