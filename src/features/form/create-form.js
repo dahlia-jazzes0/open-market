@@ -126,6 +126,10 @@ export function createForm({ fields, onsubmit, onerror }) {
           setErrors([error.message]);
           options?.reject?.(error);
           return;
+        } else if (typeof error === "string") {
+          setErrors([error]);
+          options?.reject?.(error);
+          return;
         }
         throw error;
       }
