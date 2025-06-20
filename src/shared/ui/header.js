@@ -39,7 +39,7 @@ export function HeaderView() {
               h(SearchInput),
             ],
           ),
-          h("nav", {}, [
+          h("nav", null, [
             h(
               "ul",
               { class: "flex gap-x-6.5" },
@@ -59,46 +59,44 @@ export function HeaderView() {
                   h("p", { class: "text-xs text-gray-3 break-keep" }, ["장바구니"]),
                 ),
               ),
-              h(
-                "li",
-                null,
-                h(Show, {
-                  when: () => auth.user == null,
-                  render: () =>
-                    h(
-                      Link,
-                      { to: "/login", class: "flex flex-col gap-y-1 items-center" },
-                      h(UserIcon),
-                      h("p", { class: "text-xs text-gray-3 break-keep" }, ["로그인"]),
-                    ),
-                }),
-                h(Show, {
-                  when: () => auth.user != null,
-                  render: () =>
-                    h(
-                      "div",
-                      null,
-                      h(Show, {
-                        when: () => auth.user?.user_type === "BUYER",
-                        render: MyPageDropdown,
-                      }),
-                      h(Show, {
-                        when: () => auth.user?.user_type === "SELLER",
-                        render: () =>
-                          h(Link, { to: "/business", class: buttonStyle({ size: "input" }) }, [
-                            h(ShoppingBagIcon),
-                            h("span", { class: "ml-2" }, "판매자 센터"),
-                          ]),
-                      }),
-                    ),
-                }),
-              ),
+              h("li", null, h(GuestUserButton), h(BuyerUserButton), h(SellerUserButton)),
             ),
           ]),
         ],
       ),
     ],
   );
+}
+
+function GuestUserButton() {
+  return h(Show, {
+    when: () => auth.user == null,
+    render: () =>
+      h(
+        Link,
+        { to: "/login", class: "flex flex-col gap-y-1 items-center" },
+        h(UserIcon),
+        h("p", { class: "text-xs text-gray-3 break-keep" }, "로그인"),
+      ),
+  });
+}
+
+function BuyerUserButton() {
+  return h(Show, {
+    when: () => auth.user?.user_type === "BUYER",
+    render: MyPageDropdown,
+  });
+}
+
+function SellerUserButton() {
+  return h(Show, {
+    when: () => auth.user?.user_type === "SELLER",
+    render: () =>
+      h(Link, { to: "/business", class: buttonStyle({ size: "input" }) }, [
+        h(ShoppingBagIcon),
+        h("span", { class: "ml-2" }, "판매자 센터"),
+      ]),
+  });
 }
 
 function MyPageDropdown() {
