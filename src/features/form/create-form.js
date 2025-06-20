@@ -15,6 +15,7 @@ import { SchemaError } from "@/shared/schema/schema-error";
  * @template Value
  * @typedef {{
  *   name: string,
+ *   type: InputType | undefined,
  *   value: ReadSignal<Value>,
  *   setValue: WriteSignal<Value>,
  *   onblur: (e: Event & { currentTarget: HTMLFormElement }) => void,
@@ -34,7 +35,11 @@ import { SchemaError } from "@/shared/schema/schema-error";
  */
 
 /**
- * @template {Record<string, { parse: () => any; }>} Fields
+ * @typedef {"text" | "checkbox"} InputType
+ */
+
+/**
+ * @template {Record<string, { parse: () => any; type?: InputType }>} Fields
  * @param {{
  *   fields: Fields,
  *   onsubmit: (
@@ -60,7 +65,7 @@ export function createForm({ fields, onsubmit, onerror }) {
       for (const [name, field] of Object.entries(form.fields)) {
         const element = formElement.elements[name];
         if (element == null) throw new Error("Element not found");
-        field.invalidate(element.value, {
+        field.invalidate(getValue(element, field.type), {
           resolve: (value) => {
             data[name] = value;
           },
@@ -83,9 +88,9 @@ export function createForm({ fields, onsubmit, onerror }) {
     const [value, setValue] = createSignal();
     const [errors, setErrors] = createSignal([]);
     const onblur = (e) => {
-      invalidate(e.currentTarget.value, {
+      invalidate(getValue(e.currentTarget, fieldConfig.type), {
         reject: () => {
-          setValue(e.currentTarget.value);
+          setValue(getValue(e.currentTarget, fieldConfig.type));
         },
       });
     };
@@ -100,6 +105,7 @@ export function createForm({ fields, onsubmit, onerror }) {
 
     form.fields[name] = {
       name,
+      type: fieldConfig.type,
       value,
       setValue,
       onblur,
@@ -126,4 +132,17 @@ export function createForm({ fields, onsubmit, onerror }) {
     }
   }
   return form;
+}
+/**
+ *
+ * @param {HTMLInputElement} element
+ * @param {InputType} [type]
+ */
+function getValue(element, type) {
+  switch (type) {
+    case "checkbox":
+      return element.checked;
+    default:
+      return element.value;
+  }
 }
