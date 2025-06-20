@@ -88,6 +88,50 @@ describe("number", () => {
   });
 });
 
+describe("boolean", () => {
+  test("default", () => {
+    const schema = sb.boolean();
+    expect(schema.parse(true)).toBe(true);
+    expect(schema.parse(false)).toBe(false);
+    expect(() => schema.parse(0)).toThrow();
+    expect(() => schema.parse("")).toThrow();
+  });
+
+  test("cast", () => {
+    const schema = sb.boolean({ cast: true });
+    expect(schema.parse(0)).toBe(false);
+    expect(schema.parse(1)).toBe(true);
+    expect(schema.parse(true)).toBe(true);
+    expect(schema.parse(false)).toBe(false);
+    expect(schema.parse("")).toBe(false);
+    expect(schema.parse("true")).toBe(true);
+    expect(schema.parse("false")).toBe(true);
+  });
+
+  test("custom cast", () => {
+    const schema = sb.boolean({ cast: (v) => v === "true" });
+    expect(schema.parse(0)).toBe(false);
+    expect(schema.parse(1)).toBe(false);
+    expect(schema.parse(true)).toBe(false);
+    expect(schema.parse(false)).toBe(false);
+    expect(schema.parse("")).toBe(false);
+    expect(schema.parse("true")).toBe(true);
+    expect(schema.parse("false")).toBe(false);
+  });
+
+  test("true only", () => {
+    const schema = sb.boolean().true("A");
+    expect(schema.parse(true)).toBe(true);
+    expect(() => schema.parse(false)).toThrowError("A");
+  });
+
+  test("false only", () => {
+    const schema = sb.boolean().false("A");
+    expect(() => schema.parse(true)).toThrowError("A");
+    expect(schema.parse(false)).toBe(false);
+  });
+});
+
 describe("object", () => {
   test("integration", () => {
     const schema = sb.object({ name: sb.string().min(1, "A"), age: sb.number().min(0, "B") });

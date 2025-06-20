@@ -161,6 +161,51 @@ class NumberSchemaBuilder extends BaseSchemaBuilder {
     });
   }
 }
+class BooleanSchemaBuilder extends BaseSchemaBuilder {
+  type() {
+    return "boolean";
+  }
+  /**
+   *
+   * @param {{ cast?: true | (v: unknown) => boolean, message?: string }} [options]
+   */
+  constructor(options) {
+    super();
+    this.parse = (v) => {
+      if (options?.cast != null) {
+        if (typeof options.cast === "function") {
+          v = options.cast(v);
+        } else if (options.cast === true) {
+          v = Boolean(v);
+        }
+      }
+      if (typeof v !== "boolean") throw new SchemaError(options?.message ?? "입력은 boolean이어야 합니다.");
+      return v;
+    };
+  }
+  /**
+   *
+   * @param {string} message
+   * @returns {BooleanSchemaBuilder}
+   */
+  true(message) {
+    return this._withParse((v) => {
+      if (v !== true) throw new SchemaError(message ?? "true가 아닙니다.");
+      return v;
+    });
+  }
+  /**
+   *
+   * @param {string} message
+   * @returns {BooleanSchemaBuilder}
+   */
+  false(message) {
+    return this._withParse((v) => {
+      if (v !== false) throw new SchemaError(message ?? "false가 아닙니다.");
+      return v;
+    });
+  }
+}
 
 export default {
   string(options) {
@@ -171,5 +216,8 @@ export default {
   },
   number(options) {
     return new NumberSchemaBuilder(options);
+  },
+  boolean(options) {
+    return new BooleanSchemaBuilder(options);
   },
 };
