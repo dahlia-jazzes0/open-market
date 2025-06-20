@@ -6,7 +6,7 @@ import { authGuard } from "../(auth)/auth-guard";
 export function MainLayout(props) {
   return fr(
     h(HeaderView), //
-    h("main", { class: "min-h-lvh xl:w-7xl mx-auto pb-8" }, ...props.children),
+    h("main", { class: "min-h-lvh pb-8" }, ...props.children),
     h(FooterView),
     h(authGuard.Component),
   );

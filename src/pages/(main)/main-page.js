@@ -6,6 +6,6 @@ import { MainLayout } from "./main-layout";
 export function MainPage() {
   return h(MainLayout, null, [
     h(CarouselMockup), //
-    h(ProductSummaryList, { class: "mt-20" }),
+    h("div", { class: "xl:w-7xl mx-auto" }, h(ProductSummaryList, { class: "mt-20" })),
   ]);
 }
