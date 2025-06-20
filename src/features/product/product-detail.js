@@ -1,5 +1,7 @@
+import { authGuard } from "@/pages/(auth)/auth-guard";
 import { api } from "@/shared/api";
 import { useApi } from "@/shared/api/hook";
+import { auth } from "@/shared/auth/auth";
 import { createEffect, createSignal, h } from "@/shared/element-helper/element-helper";
 import { router } from "@/shared/router/router";
 import { Button } from "@/shared/ui/button";
@@ -42,8 +44,31 @@ export function ProductDetailOverview({ title, seller, thumbnailUrl, price, stoc
           ]),
         ),
         h("div", { class: "flex items-center gap-x-3.5 mt-5.5" }, [
-          h(Button, { class: "flex-2" }, "바로 구매"), //
-          h(Button, { variant: "secondary", class: "flex-1" }, "장바구니"), //
+          h(
+            Button,
+            {
+              class: "flex-2",
+              onclick: () => {
+                if (auth.user == null) {
+                  return authGuard.showModal();
+                }
+              },
+            },
+            "바로 구매",
+          ), //
+          h(
+            Button,
+            {
+              variant: "secondary",
+              class: "flex-1",
+              onclick: () => {
+                if (auth.user == null) {
+                  return authGuard.showModal();
+                }
+              },
+            },
+            "장바구니",
+          ), //
         ]),
       ]),
     ]),
