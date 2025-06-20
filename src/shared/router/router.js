@@ -50,7 +50,7 @@ export function Routes(props) {
     h(Show, { when: () => matchedPath() == null, render: props.notFound }),
   );
 }
-export function Link({ children, to, ...attr }) {
+export function Link({ children, to, replace, ...attr }) {
   return h(
     "a",
     {
@@ -59,7 +59,7 @@ export function Link({ children, to, ...attr }) {
       onclick: (e) => {
         e.preventDefault();
         const path = e.currentTarget.hash.slice(2);
-        router.navigateTo(path);
+        router.navigateTo(path, { replace });
       },
     },
     ...children,

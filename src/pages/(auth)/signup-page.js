@@ -1,7 +1,6 @@
 import { createForm } from "@/features/form/create-form";
 import { FormCheckbox, FormErrors, FormField, FormInput, FormLabel } from "@/features/form/ui";
 import { api } from "@/shared/api";
-import { auth } from "@/shared/auth/auth";
 import { createSignal, For, fr, h, Show } from "@/shared/element-helper/element-helper";
 import { router } from "@/shared/router/router";
 import sb from "@/shared/schema/schema-builder";
@@ -101,7 +100,7 @@ export function SignupPage() {
           break;
         }
       }
-      router.back();
+      router.navigateTo("/login", { replace: true });
     },
     onerror: async (err, { form }) => {
       if (err instanceof Response) {

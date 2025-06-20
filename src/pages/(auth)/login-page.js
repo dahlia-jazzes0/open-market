@@ -84,7 +84,7 @@ export function LoginPage() {
       ],
     ),
     h("div", { class: "mt-7.5 text-gray-1 flex flex-wrap items-center justify-center gap-x-3.5" }, [
-      h(Link, { to: "/signup" }, "회원가입"),
+      h(Link, { to: "/signup", replace: true }, "회원가입"),
       h("span", null, "|"),
       h(Link, { to: "/forgot-password" }, "비밀번호 찾기"),
     ]),
