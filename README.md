@@ -39,7 +39,7 @@
   - ```js
     const [count, setCount] = createSignal(0);
     // Signal을 생성합니다. 상태라고 생각하시면 좋습니다.
-    // createSignal의 첫번째 인자에는 초깃값을 넣습니다. 즉, 지금은 false인 상태입니다.
+    // createSignal의 첫번째 인자에는 초깃값을 넣습니다. 즉, 지금은 0인 상태입니다.
     // 함수는 [read, write] 배열을 반환합니다.
     // read 함수는 값을 읽을 때, write 함수는 값을 쓸 때 사용합니다.
 
