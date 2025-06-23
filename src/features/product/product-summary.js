@@ -17,14 +17,14 @@ export function ProductSummaryList(props) {
     { class: productSummaryListStyle({ class: props.class }) },
     h(For, {
       each: products, //
-      render: (props) => h(Link, { to: `/products/${props.id}` }, h(ProductSummaryView, props)),
+      render: (props) => h("li", null, h(Link, { to: `/products/${props.id}` }, h(ProductSummaryView, props))),
       resolveKey: (product) => product.id,
     }),
   );
 }
 
 export function ProductSummaryView({ title, seller, thumbnailUrl, price, isSoldOut }) {
-  return h("li", { class: "flex flex-col gap-y-4" }, [
+  return h("div", { class: "flex flex-col gap-y-4" }, [
     h(ProductImage, { src: thumbnailUrl, alt: "", class: "border-gray-4 rounded-md border" }),
     h(
       "div",
